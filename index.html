@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>rCalc</title>
+    <link rel="icon" type="image/svg+xml" href="assets/bolt3.svg">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <h1>
+            <span class="material-symbols-outlined bolt-icon">bolt</span>
+            rCalc
+        </h1>
+    </header>
+
+    <section class="mode-toggle">
+        <label class="switch">
+            <input type="checkbox" id="modeToggle">
+            <span class="slider"></span>
+        </label>
+        <span id="modeLabel">Band → Value</span>
+    </section>
+
+    <main>
+        <section id="bandToValue">
+            <section class="band-selector">
+                <label for="bandCountSelect">Number of Bands: </label>
+                <select id="bandCountSelect">
+                    <option value="4">4 Band</option>
+                    <option value="5">5 Band</option>
+                    <option value="6">6 Band</option>
+                </select>
+            </section>
+
+            <section class="resistor-visual">
+                <div class="resistor-center-wrapper">
+                    <div class="resistor-relative-container">
+                        <div class="resistor-wrapper">
+                            <div class="resistor-lead left-lead"></div>
+
+                            <div class="resistor-body">
+                                <div class="stripe stripe-1" role="button" aria-label="First digit color band"></div>
+                                <div class="stripe stripe-2" role="button" aria-label="Second digit color band"></div>
+                                <div class="stripe stripe-3" role="button" aria-label="Third digit color band"></div>
+                                <div class="stripe stripe-4" role="button" aria-label="Multiplier color band"></div>
+                                <div class="stripe stripe-5" role="button" aria-label="Tolerance color band"></div>
+                                <div class="stripe stripe-6" role="button"
+                                    aria-label="Temperature coefficient color band"></div>
+                            </div>
+
+                            <div class="resistor-lead right-lead"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="content-wrapper">
+                <div class="input-columns">
+                    <div class="input-group digit1">
+                        <label for="digit1">1st-Digit: </label>
+                        <select id="digit1" class="color-select">
+                            <option value="BRN" class="brown">BRN 1</option>
+                            <option value="RED" class="red" selected>RED 2</option>
+                            <option value="ORN" class="orange">ORN 3</option>
+                            <option value="YEL" class="yellow">YEL 4</option>
+                            <option value="GRN" class="green">GRN 5</option>
+                            <option value="BLU" class="blue">BLU 6</option>
+                            <option value="VIO" class="violet">VIO 7</option>
+                            <option value="GRY" class="gray">GRY 8</option>
+                            <option value="WHT" class="white">WHT 9</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group digit2">
+                        <label for="digit2">2nd-Digit: </label>
+                        <select id="digit2" class="color-select">
+                            <option value="BLK" class="black" selected>BLK 0</option>
+                            <option value="BRN" class="brown">BRN 1</option>
+                            <option value="RED" class="red">RED 2</option>
+                            <option value="ORN" class="orange">ORN 3</option>
+                            <option value="YEL" class="yellow">YEL 4</option>
+                            <option value="GRN" class="green">GRN 5</option>
+                            <option value="BLU" class="blue">BLU 6</option>
+                            <option value="VIO" class="violet">VIO 7</option>
+                            <option value="GRY" class="gray">GRY 8</option>
+                            <option value="WHT" class="white">WHT 9</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group digit3 band5">
+                        <label for="digit3">3rd-Digit: </label>
+                        <select id="digit3" class="color-select">
+                            <option value="BLK" class="black">BLK 0</option>
+                            <option value="BRN" class="brown">BRN 1</option>
+                            <option value="RED" class="red">RED 2</option>
+                            <option value="ORN" class="orange">ORN 3</option>
+                            <option value="YEL" class="yellow">YEL 4</option>
+                            <option value="GRN" class="green">GRN 5</option>
+                            <option value="BLU" class="blue" selected>BLU 6</option>
+                            <option value="VIO" class="violet">VIO 7</option>
+                            <option value="GRY" class="gray">GRY 8</option>
+                            <option value="WHT" class="white">WHT 9</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group multiplier">
+                        <label for="multiplier">Multiplier: </label>
+                        <select id="multiplier" class="color-select">
+                            <option value="SLV" class="silver">SLV 0.01</option>
+                            <option value="GLD" class="gold">GLD 0.1</option>
+                            <option value="BLK" class="black">BLK 1</option>
+                            <option value="BRN" class="brown">BRN 10</option>
+                            <option value="RED" class="red">RED 100</option>
+                            <option value="ORN" class="orange">ORN 1k</option>
+                            <option value="YEL" class="yellow">YEL 10k</option>
+                            <option value="GRN" class="green" selected>GRN 100k</option>
+                            <option value="BLU" class="blue">BLU 1M</option>
+                            <option value="VIO" class="violet">VIO 10M</option>
+                            <option value="GRY" class="gray">GRY 100M</option>
+                            <option value="WHT" class="white">WHT 1G</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group tolerance">
+                        <label for="tolerance">Tolerance: </label>
+                        <select id="tolerance" class="color-select">
+                            <option value="SLV" class="silver">SLV ±10%</option>
+                            <option value="GLD" class="gold" selected>GLD ±5%</option>
+
+                            <option value="BRN" class="brown">BRN ±1%</option>
+                            <option value="RED" class="red">RED ±2%</option>
+
+                            <option value="GRN" class="green">GRN ±0.5%</option>
+                            <option value="BLU" class="blue">BLU ±0.25%</option>
+                            <option value="VIO" class="violet">VIO ±0.1%</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group tempCoef band6">
+                        <label for="tempCoef">Temperature Coefficient: </label>
+                        <select id="tempCoef" class="color-select">
+                            <option value="BRN" class="brown">BRN 100ppm/°C</option>
+                            <option value="RED" class="red">RED 50ppm/°C</option>
+                            <option value="ORN" class="orange" selected>ORN 15ppm/°C</option>
+                            <option value="YEL" class="yellow">YEL 25ppm/°C</option>
+                        </select>
+                    </div>
+                </div>
+
+                <section class="result">
+                    <div class="result-row">
+                        <label>Resistance: </label>
+                        <div class="result-box" id="res-value">--</div>
+                    </div>
+
+                    <div class="result-row">
+                        <label>Tolerance: </label>
+                        <div class="result-box" id="tol-value">--</div>
+                    </div>
+
+                    <div class="result-row band6">
+                        <label>Temperature Coefficient: </label>
+                        <div class="result-box" id="temp-value">--</div>
+                    </div>
+                </section>
+            </div>
+        </section>
+
+        <section id="valueToBand">
+            <div class="input-row">
+                <label for="resistanceInput">Resistance: </label>
+                <input type="text" id="resistanceInput" class="input-box res-box" placeholder="e.g. 4.7k or 4700">
+            </div>
+            <div id="error-message" style="color: red; margin-top: -15px; margin-bottom: 10px; text-align: center;">
+            </div>
+
+            <div class="input-row">
+                <label for="toleranceInput">Tolerance: </label>
+                <select id="toleranceInput" class="input-box tol-box">
+                    <option value="±10%">±10%</option>
+                    <option value="±5%">±5%</option>
+                    <option value="±2%">±2%</option>
+                    <option value="±1%">±1%</option>
+                    <option value="±0.5%">±0.5%</option>
+                    <option value="±0.25%">±0.25%</option>
+                    <option value="±0.1%">±0.1%</option>
+                </select>
+            </div>
+
+            <div class="input-row">
+                <label for="tempInput">Temperature Coefficient: </label>
+                <select id="tempInput" class="input-box temp-box">
+                    <option value="--">--</option>
+                    <option value="100 ppm/°C">100 ppm/°C</option>
+                    <option value="50 ppm/°C">50 ppm/°C</option>
+                    <option value="25 ppm/°C">25 ppm/°C</option>
+                    <option value="15 ppm/°C">15 ppm/°C</option>
+                </select>
+            </div>
+
+            <div class="input-row">
+                <button id="convertBtn" class="convert-box">Convert</button>
+            </div>
+
+            <section id="bandOutput" class="resistor-visual">
+                <div class="resistor-center-wrapper">
+                    <div class="resistor-relative-container">
+                        <div class="resistor-wrapper">
+                            <div class="resistor-lead left-lead"></div>
+
+                            <div class="resistor-body">
+                                <div class="stripe-v2b stripe-v2b-1" role="img" aria-label="First digit color band">
+                                </div>
+                                <div class="stripe-v2b stripe-v2b-2" role="img" aria-label="Second digit color band">
+                                </div>
+                                <div class="stripe-v2b stripe-v2b-3" role="img" aria-label="Third digit color band">
+                                </div>
+                                <div class="stripe-v2b stripe-v2b-4" role="img" aria-label="Multiplier color band">
+                                </div>
+                                <div class="stripe-v2b stripe-v2b-5" role="img" aria-label="Tolerance color band"></div>
+                                <div class="stripe-v2b stripe-v2b-6" role="img"
+                                    aria-label="Temperature coefficient color band"></div>
+                            </div>
+
+                            <div class="resistor-lead right-lead"></div>
+                        </div>
+
+                        <button id="see5BandBtn" style="display: none;">See 5-Band Version</button>
+                    </div>
+                </div>
+            </section>
+
+        </section>
+    </main>
+
+    <footer>
+        ©rCalc |
+        <a href="https://github.com/sathyajith04" target="_blank">
+            <i class="fab fa-github"></i> GitHub
+        </a>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

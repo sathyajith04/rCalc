@@ -1,0 +1,653 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    overflow-y: scroll;
+}
+
+html,
+body {
+    font-family: 'Poppins', sans-serif;
+    height: 100%;
+    margin: 0;
+    padding: 0 5vw;
+    display: flex;
+    flex-direction: column;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: url('/assets/circuitPattern.svg') repeat center center;
+    background-size: contain;
+    /* or 'contain' or 'auto' based on image */
+    opacity: 0.07;
+    /* adjust for subtlety */
+    pointer-events: none;
+    z-index: 0;
+}
+
+header {
+    text-align: center;
+    margin-top: 5px;
+    margin-bottom: 20px;
+}
+
+.material-symbols-outlined.bolt-icon {
+    vertical-align: middle;
+    font-size: 1.2em;
+    color: #f8e42a;
+}
+
+body>main {
+    flex: 1;
+}
+
+footer {
+    text-align: center;
+    margin-top: 10px;
+    padding: 6px 0;
+    font-size: 0.85rem;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+footer a {
+    color: #000;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+footer a:hover {
+    text-decoration: underline;
+    color: #444;
+}
+
+footer i {
+    color: #000;
+}
+
+.mode-toggle {
+    text-align: center;
+    margin-bottom: 7px;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 28px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    background-color: #f7ad4d;
+    /*rgb(245, 174, 82);*/
+    border-radius: 34px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transition: 0.4s;
+}
+
+.slider:before {
+    content: "";
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    background-color: white;
+    border-radius: 50%;
+    bottom: 4px;
+    left: 4px;
+    transition: 0.4s;
+}
+
+input:checked+.slider {
+    background-color: #96e753;
+}
+
+input:checked+.slider:before {
+    transform: translateX(32px);
+}
+
+#bandToValue,
+#valueToBand {
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    z-index: 1;
+    position: relative;
+
+}
+
+
+.input-group label {
+    /* Updated selector */
+    display: inline-block;
+    width: 200px;
+    text-align: left;
+    margin-right: 10px;
+}
+
+.color-select,
+#bandCountSelect {
+    /* More specific selector for vertical-align */
+    vertical-align: middle;
+}
+
+.band-selector {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 4%;
+    text-align: center;
+    /* Moved from HTML */
+}
+
+#bandCountSelect:hover,
+.color-select:hover {
+    cursor: pointer;
+    border-color: rgb(245, 174, 82);
+    box-shadow: 0 0 6px rgb(177, 131, 71);
+    transition: all 0.2s ease-in-out;
+}
+
+.content-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 25px;
+    margin-top: 30px;
+}
+
+.input-columns {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: auto;
+    width: 100%;
+    /* Keeping this for now as it was in original */
+}
+
+.color-select,
+#bandCountSelect {
+    background-color: #f0f0f0;
+    text-align: center;
+    padding: 6px 12px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 150px;
+    font-family: 'Poppins', sans-serif;
+    -webkit-appearance: auto;
+    -moz-appearance: auto;
+}
+
+/* Unified Stripe Styling */
+.stripe,
+.stripe-v2b {
+    transition: transform 0.15s, box-shadow 0.15s;
+    position: absolute;
+    z-index: 3;
+    /* on top of resistor body only */
+    border: 0.1em dotted grey;
+    width: 5%;
+    height: 100%;
+}
+
+.stripe {
+    /* Interactive stripes */
+    cursor: pointer;
+}
+
+.stripe:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+    border-style: solid;
+}
+
+.stripe[role="button"]:focus {
+    /* Accessibility focus style */
+    outline: 2px solid blue;
+    outline-offset: 2px;
+}
+
+.stripe-v2b {
+    /* Display-only stripes */
+    cursor: default;
+    /* No interactive cursor */
+}
+
+.stripe-v2b:hover {
+    /* No hover effects for display stripes */
+    transform: none;
+    box-shadow: none;
+    border-style: dotted;
+    /* Reset border style */
+}
+
+.stripe-1,
+.stripe-v2b-1 {
+    left: 8%;
+}
+
+.stripe-2,
+.stripe-v2b-2 {
+    left: 18%;
+}
+
+.stripe-3,
+.stripe-v2b-3 {
+    left: 28%;
+}
+
+.stripe-4,
+.stripe-v2b-4 {
+    left: 38%;
+}
+
+.stripe-5,
+.stripe-v2b-5 {
+    left: 78%;
+}
+
+.stripe-6,
+.stripe-v2b-6 {
+    left: 88%;
+}
+
+.resistor-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    margin: auto;
+}
+
+.resistor-body {
+    width: 80vw;
+    /* responsive width */
+    max-width: 400px;
+    /* upper limit for large screens */
+    height: 25vw;
+    /* height scales with width */
+    max-height: 100px;
+    background-color: #d9d9d9;
+    border-radius: 1em;
+    position: relative;
+    z-index: 2;
+    /* sits above body, not other content */
+    margin: auto;
+}
+
+.resistor-lead {
+    width: 10vw;
+    /* scales with screen */
+    max-width: 80px;
+    height: 1.5em;
+    background-color: #706763d3;
+}
+
+.left-lead {
+    left: 40px;
+    border-radius: 0.2em 0 0 0.2em;
+}
+
+.right-lead {
+    left: 539px;
+    border-radius: 0 0.2em 0.2em 0;
+}
+
+/*color in dropdown*/
+.black {
+    background-color: #1e1e1e;
+    color: white;
+}
+
+.brown {
+    background-color: #5d4037;
+    color: white;
+}
+
+.red {
+    background-color: #d32f2f;
+    color: white;
+}
+
+.orange {
+    background-color: #fb8c00;
+    color: white;
+}
+
+.yellow {
+    background-color: #f3d113;
+    color: white;
+}
+
+.green {
+    background-color: #388e3c;
+    color: white;
+}
+
+.blue {
+    background-color: #1976d2;
+    color: white;
+}
+
+.violet {
+    background-color: #7b1af2;
+    color: white;
+}
+
+.gray {
+    background-color: #7a7a7a;
+    color: white;
+}
+
+.white {
+    background-color: #fafafa;
+    color: black;
+}
+
+.gold {
+    background-color: #c9b037;
+    color: white;
+}
+
+.silver {
+    background-color: #b0b0b0;
+    color: white;
+}
+
+.result-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    justify-content: center;
+    gap: 12px;
+}
+
+.result-row label {
+    width: 200px;
+    font-weight: bold;
+    text-align: left;
+}
+
+.result-box {
+    background-color: #f0f0f0;
+    padding: 6px 12px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    min-width: 120px;
+    text-align: center;
+}
+
+.input-box {
+    background-color: #f0f0f0;
+    padding: 6px 12px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    min-width: 230px;
+    text-align: center;
+    font-family: inherit;
+    font-size: 1rem;
+}
+
+.convert-box {
+    background-color: #f0f0f0;
+    padding: 6px 12px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    min-width: 150px;
+    text-align: center;
+    font-family: inherit;
+    font-size: 1rem;
+    margin: 20px;
+}
+
+.convert-box.active-feedback {
+    transform: scale(0.97);
+    /* Apply the active transform */
+    box-shadow: 0 0 0 transparent;
+    /* Remove shadow */
+    transition: transform 0.05s ease-out, box-shadow 0.05s ease-out;
+    /* Add a quick transition */
+}
+
+.convert-box:hover,
+#see5BandBtn:hover,
+.input-box:hover {
+    cursor: pointer;
+    border-color: #96e753;
+    box-shadow: 0 0 6px rgba(76, 175, 80, 0.4);
+    transition: all 0.2s ease-in-out;
+}
+
+#bandOutput {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.resistor-center-wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.resistor-relative-container {
+    position: relative;
+    display: inline-block;
+}
+
+#see5BandBtn {
+    position: absolute;
+    right: 0;
+    top: 100%;
+    margin-top: 20px;
+    background-color: #f0f0f0;
+    padding: 6px 12px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 140px;
+    text-align: center;
+    font-family: inherit;
+    font-size: 0.7rem;
+}
+
+.convert-box:active,
+#see5BandBtn:active {
+    transform: scale(0.97);
+    box-shadow: 0 0 0 transparent;
+    transition: transform 0.05s, box-shadow 0.05s;
+}
+
+#error-message {
+    color: red;
+    /* margin-top: -15px; */
+    /* REMOVE THIS */
+    /* margin-bottom: 10px; */
+    /* REMOVE THIS */
+    text-align: center;
+    min-height: 20px;
+    /* Give it a minimum height to reserve space */
+    /* Add top margin if you need separation from the input field above */
+    margin-top: 5px;
+    /* Adjust as needed for visual spacing */
+    margin-bottom: 15px;
+    /* Adjust as needed for spacing below */
+    /* Initial state if no error, you might want to hide it completely or make it transparent */
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    /* Smooth fade for the error message */
+}
+
+/* Add a class to make it visible when there's an error */
+#error-message.show-error {
+    opacity: 1;
+}
+
+.input-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    gap: 12px;
+}
+
+.input-row label {
+    width: 200px;
+    font-weight: bold;
+    text-align: left;
+}
+
+.res-box:hover {
+    cursor: text;
+}
+
+.tol-box:hover,
+.temp-box:hover {
+    cursor: pointer;
+}
+
+/* Hide background image on small screens */
+@media (max-width: 768px) {
+
+    body::before {
+        display: none;
+    }
+}
+
+@media (max-width: 600px) {
+
+    body {
+            padding: 0 2vw;
+    }
+
+    .input-row,
+    .result-row,
+    .input-columns {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .input-row label,
+    .result-row label,
+    .input-group label {
+        width: 100%;
+        text-align: center;
+        margin-right: 0;
+    }
+
+    .input-box,
+    .result-box,
+    .color-select,
+    .convert-box,
+    #see5BandBtn {
+        width: 100%;
+        max-width: 180px;
+    }
+
+    .input-group {
+        width: 100%;
+        /* Make input-group take full width to center its contents */
+        text-align: center;
+        /* Center contents within the input-group if they are inline-block */
+        /* If items are block, flex on input-group itself may be needed */
+        display: block;
+        /* Or keep as is, but rely on inner elements for stacking */
+        margin-bottom: 10px;
+        /* Add some space between stacked groups */
+    }
+
+    .input-group select,
+    .input-group label {
+        display: block;
+        text-align: center;
+        width: 100%;
+    }
+
+    .input-group select,
+    .input-group input {
+        /* Target the actual input/select inside the group */
+        display: block;
+        /* Make them block to stack */
+        margin-left: auto;
+        /* Center block element */
+        margin-right: auto;
+        /* Center block element */
+    }
+
+    .band-selector {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .resistor-body {
+        width: 90vw;
+        height: 22vw;
+    }
+
+    .resistor-lead {
+        width: 12vw;
+    }
+
+    footer {
+        display: flex;
+        align-items: center;
+        padding-bottom: 10px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+}
+
+@media (max-width: 400px) {
+    body {
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 600px) {
+    body {
+        padding: 0 2vw;
+    }
+
+    .content-wrapper {
+        gap: 15px;
+        margin-top: 15px;
+    }
+
+    .input-group {
+        margin-bottom: 12px;
+    }
+
+    .convert-box,
+    #see5BandBtn {
+        max-width: 220px;
+        font-size: 0.9rem;
+    }
+
+    .resistor-body {
+        max-width: 320px;
+        height: 22vw;
+    }
+}
