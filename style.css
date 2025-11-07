@@ -25,7 +25,7 @@ body::before {
     right: 0;
     bottom: 0;
     left: 0;
-    background: url('/assets/circuitPattern.svg') repeat center center;
+    background: url('assets/circuitPattern.svg') repeat center center;
     background-size: contain;
     /* or 'contain' or 'auto' based on image */
     opacity: 0.07;
