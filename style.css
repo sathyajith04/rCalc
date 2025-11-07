@@ -11,11 +11,15 @@ html {
 html,
 body {
     font-family: 'Poppins', sans-serif;
-    height: 100%;
+    min-height: 100vh;
+    /* Ensures full height always */
     margin: 0;
-    padding: 0 5vw;
+    padding: 3vh 5vw 5vh;
+    /* Adds top & bottom breathing space */
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
+    /* Keeps elements from crowding top */
 }
 
 body::before {
@@ -526,6 +530,11 @@ input:checked+.slider:before {
 .tol-box:hover,
 .temp-box:hover {
     cursor: pointer;
+}
+
+main {
+    margin-top: 20px;
+    margin-bottom: 40px;
 }
 
 /* Hide background image on small screens */
