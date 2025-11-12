@@ -25,12 +25,12 @@
 
 ## 📸 Preview  
 
-- ### Band → Value Mode  
+- **Band → Value Mode**
 <p align="center">
   <img src="assets/band to value.PNG" alt="rCalc Band to Value Screenshot" width="600">
 </p>
 
-- ### Value → Band Mode  
+- **Value → Band Mode** 
 <p align="center">
   <img src="assets/value to band.PNG" alt="rCalc Value to Band Screenshot" width="600">
 </p>
