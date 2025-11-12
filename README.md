@@ -35,17 +35,3 @@
   <img src="assets/value to band.PNG" alt="rCalc Value to Band Screenshot" width="600">
 </p>
 
----
-
-## 🧩 How to Run Locally  
-If you want to test or modify the project on your system:
-
-```bash
-# 1. Clone this repository
-git clone https://github.com/your-username/rCalc.git
-
-# 2. Open the folder
-cd rCalc
-
-# 3. Run the project
-# Simply open index.html in your browser
