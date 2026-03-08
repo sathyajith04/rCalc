@@ -1,8 +1,8 @@
-# rCalc – Resistor Colour Code Calculator  
+<h1 align="center">rCalc – Resistor Colour Code Calculator</h1>
 
-**rCalc** is a modern web-based tool that helps users easily convert between **resistor colour bands** and **resistance values**. It supports **4-band**, **5-band**, and **6-band** resistors with a clean, interactive interface and live color updates.
-
-**Try It Out:** [https://rcalc1.vercel.app/](https://rcalc1.vercel.app/)
+<p align="center">
+<b>rCalc</b> is a modern web-based tool that helps users easily convert between <b>resistor colour bands</b> and <b>resistance values</b>. It supports <b>4-band</b>, <b>5-band</b>, and <b>6-band</b> resistors with a clean, interactive interface and live color updates.
+</p> 
 
 ---
 
